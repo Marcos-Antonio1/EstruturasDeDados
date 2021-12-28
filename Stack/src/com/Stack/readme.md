@@ -1,4 +1,4 @@
-# Estrutura de Pilha(Stack):
+# Estrutura de Dados Stack ou Pilha:
 
 ## Descrição
 
