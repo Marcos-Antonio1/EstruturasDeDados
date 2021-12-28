@@ -135,7 +135,7 @@ public Node pop(){
 </p>
 
 
-# Pricipais uso :
+# Pricipais usos :
 
 * Gerenciamento de Memória em Tempo de Compilação;
 * Avaliação de Expressões e Parsing Sintático;
