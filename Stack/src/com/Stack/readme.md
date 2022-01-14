@@ -3,7 +3,7 @@
 ## Descrição
 
   <p align= "justify">
-  O conceito da estrutura Pilha tem como conceito implementar um encadeamento de nós assim como em outras estruturas, porém ela segue regras específicas de manipulação conhecida como LIFO(Last in First Out), a qual restringe a entrada e saída de elemento de modo que  o  último elemento adicionado sempre será o próximo a ser retirado se assemelhando ,dessa forma, com uma pilha real como por exemplo uma pilha de livros ou pratos.
+  O conceito da estrutura Pilha tem como principio implementar um encadeamento de nós assim como em outras estruturas, porém ela segue regras específicas de manipulação conhecida como LIFO(Last in First Out), a qual restringe a entrada e saída de elemento de modo que  o  último elemento adicionado sempre será o próximo a ser retirado se assemelhando ,dessa forma, com uma pilha real como por exemplo uma pilha de livros ou pratos.
   <br/>
   <br/>
 </p>
