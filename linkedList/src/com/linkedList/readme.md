@@ -3,66 +3,77 @@
 ## Descrição
 
   <p align= "justify">
-     A Estrutura de lista encadeada tem como intuinto principal agrupar elementos na memória de forma a criar um encadeamento lógico de dados, na qual cada elemento tem seu valor interno e uma referência para o próximo objeto, além de ter outras implementações como listas crculares e listas duplamente encadeada elas são consideradas estruturas mais génericas e podem ser usadas na implementação de filas e pilhas, outro ponto relevante é que diferentemente de lista sequenciais as listas encadeadas  não necessariamente possuem elementos contíguos na memória.
-     A utilização de listas encadeadas facilita as operações de remoção e inserção, uma vez que é apenas necessário saber a posição que se quer inserir e então alterar os ponteiros , de forma que o elemento anterior a posição que o novo elemento será inserido aponte para no o novo objeto e o novo objeto aponte para o nó o qual o seu elemento anterior fazia referência, porém apesar da facilidade de dessas operações esse tipo de estrutra 
-  não é adequada para realizar busca binária, pois devido a impossibilidade de acessar o elemento diretamente, há sempre uma necessidade de percorrer a lista até chegar determinado elemento o que dificulta aumenta o tempo para divisão da lista ao meio, deixando dessa forma a depender da lista a busca binária nessa esrutura bem parecida 
+      &nbsp &nbsp &nbsp &nbsp A Estrutura de lista encadeada tem como intuinto principal agrupar elementos na memória de forma a criar um encadeamento lógico de dados, na qual cada elemento tem seu valor interno e uma referência para o próximo objeto, além de ter outras implementações como listas circulares e listas duplamente encadeada elas são consideradas estruturas mais génericas e podem ser usadas na implementação de filas e pilhas, outro ponto relevante é que diferentemente de listas sequenciais as listas encadeadas  não necessariamente possuem elementos contíguos na memória. <br/>
+    &nbsp &nbsp &nbsp &nbsp A utilização de listas encadeadas facilita as operações de remoção e inserção, uma vez que é apenas necessário saber a posição que se quer inserir e então alterar os ponteiros , de forma que o elemento anterior a posição que o novo elemento será inserido aponte para  o novo objeto e o novo objeto aponte para o nó o qual o seu elemento anterior fazia referência, porém apesar da facilidade de dessas operações esse tipo de estrutura 
+  não é adequada para realizar busca binária, pois não é possível acessar o elemento diretamente,assim há sempre uma necessidade de percorrer a lista até chegar determinado elemento o que  aumenta o tempo para divisão da lista ao meio, deixando dessa forma ,a depender da lista, a busca binária  bem semelhante a uma busca sequêncial.
   <br/>
   <br/>
 </p>
 
+
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/33884828/149550329-d517f841-1a6a-4a11-ad4d-a0eafc54f89d.png">
+  <img src="https://user-images.githubusercontent.com/33884828/149939924-dae413fa-76e4-4b04-bbd5-4cf351d53979.png">
   <br/>
   <br/>
 </p>
 
 <p align="justify">
-    A figura acima tenta mostrar um represetação gráfica de como seria essa estutura, A qual podemos destacar as principais operações realizadas que são enqueue(enfileirar) colocar no fim da Fila um novo elemento e dequeue(desenfileirar) retirar o elemento do início da Fila, cabe resaltar,ainda, a importância do ponteiro que  sempre armazena a referência do inicio da Fila, desta forma, servindo como base para as outras operações.
-
+   &nbsp &nbsp &nbsp &nbsp A figura acima tenta mostrar um represetação gráfica de como seria essa estutura, A qual podemos destacar a sua organização, como dita anteriormente é uma composição bem simples na qual está presente o um ponteiro para marcar a entrada da lista e seus elementos, que armazenam os dados e a referência para o elemento posterior.
+  
 # Implementação :
-  <p align="justify" > Nessa seção será mostrado a estutura básica de um pilha e suas principais operações. </p>
+  <p align="justify" > Nessa seção será mostrado a estutura básica de uma lista encadeada e suas principais operações. </p>
   
   ## Implementação dos Elementos(Nós): 
   <p algin="justify"> Elementos que são responsáveis por armazenar os dados e a referências para o próximo objeto </p>
   
   ```
-  package com.queue;
+package com.linkedList;
 
 public class Node<T> {
 
-    private T object;
-    private  Node <T> refNode;
+    private T content;
+    private Node nextNode;
 
-    public Node(){
-
+    public Node() {
+        this.nextNode = null;
+    }
+    public Node(T content){
+        this.content =content;
+        this.nextNode = null;
     }
 
-    public Node(T object){
-       this.object =object;
-       this.refNode = null;
+    public Node(T content, Node nextNode) {
+        this.content = content;
+        this.nextNode = nextNode;
     }
 
-    public Object getObject() {
-        return object;
+    public T getContent() {
+        return content;
     }
 
-    public void setObject(T object) {
-        this.object = object;
+    public void setContent(T content) {
+        this.content = content;
     }
 
-    public Node getRefNode() {
-        return refNode;
+    public Node getNextNode() {
+        return nextNode;
     }
 
-    public void setRefNode(Node refNode) {
-        this.refNode = refNode;
+    public void setNextNode(Node nextNode) {
+        this.nextNode = nextNode;
     }
 
     @Override
     public String toString() {
-        return "Node{" +
-                "object=" + object +
-                '}';
+        String str= "Node{" + "content=" + content + '}';
+
+        if(nextNode !=null){
+            str +=  "->" + nextNode.toString();
+        }else{
+            str += "-> null";
+        }
+
+        return str;
     }
 }
 
@@ -71,124 +82,176 @@ public class Node<T> {
 
 ## Implementação da estrutura básica da Fila: 
 ```
-public class Queue<T> {
+package com.linkedList;
 
-    private Node<T> refNodeInput; // referência para a entrada ou fim da fila
+public class LinkedList<T> {
 
-    public Queue() {
-        this.refNodeInput = null;
+    Node<T> inputReference;
+
+    public  LinkedList(){
+        this.inputReference= null;
     }
+}
 
 ```
 
 <p align ="justify"> 
-  A estrutura básica é composta  por uma objeto Node, o qual serve para referênciar o fim(ou entrada) da Fila, quando instanciado o construtor inicia o ponteiro de entrada como null,deixado dessa forma a Fila vazia.
-</p>
-
-## Implementação do Enqueue:
- ```
-public void enqueue(Node<T> newNode) {
-        newNode.setRefNode(refNodeInput);
-        refNodeInput = newNode;
-    }
- 
- ```
- <p align ="justify"> 
-  O método enqueue é responsável por enfileirar o item na Fila tomando como referência o ponteiro que aponta para  fim(refNodeInput), de forma que o newNode recebe os dados adicionado antes dele como referência de próximo elemento e o fim da fila recebe o elemento adicionado, assim criando um encadeamento do último elemento e o penúltimo e consequentemente toda a ordem lógica da Fila.  
+ &nbsp &nbsp &nbsp &nbsp A estrutura básica é composta  por uma objeto Node, o qual serve para referênciar a entrada da Lista , quando instanciado o construtor inicia o ponteiro de entrada como null,deixado dessa forma a lista vazia.
 </p>
 
 ## Implementação do isEmpty: 
 ```
 public boolean isEmpty(){
-        return refNodeInput == null ? true : false;
+        return inputReference == null ? true : false;
     }
 
 ```
 <p align ="justify"> 
-  O método isEmpty verifica se a Fila está vazia, para isso verifica o elemento de entrada, se este estiver null quer dizer que não há nenhum elemento e a Fila está vazia.
+ &nbsp &nbsp &nbsp &nbsp O método isEmpty verifica se a Lista está vazia, para isso verifica o elemento de entrada, se este estiver null quer dizer que não há nenhum elemento e a Lista está vazia.
 </p>
 
-## Implementação do Dequeue:
-```
-public Node<T> dequeue() {
-        if (!this.isEmpty()) {
-            Node firstNode = refNodeInput;
-            Node secondNode = refNodeInput;
-            while (true) {
-                if (firstNode.getRefNode() != null) {
-                    secondNode = firstNode;
-                    firstNode = firstNode.getRefNode();
-                } else {
-                    secondNode.setRefNode(null);
+
+
+## Implementação do método size:
+ ```
+    public int size(){
+        int listSize = 0;
+
+        Node <T> referenceAux = inputReference;
+        while (true){
+            if(referenceAux != null){
+                listSize++;
+                if(referenceAux.getNextNode() != null){
+                    referenceAux = referenceAux.getNextNode();
+                }else {
                     break;
                 }
+            }else{
+                break;
             }
-            return firstNode;
         }
-        return  null;
-    }
 
-```
-<p align ="justify"> 
- O método dequeue retira o elemento da Fila seguindo a especificação FIFO, ou seja, o primeiro elemento ou simplismente o elemento mais antigo da estrutura. Desse modo é feita a verificação se a Fila está vazia, não estando vazia é necessário guarda o penúltimo(fistNode) e o último(secondNode) elemento que no percorrer da lista se tornarão o primeiro e segundo elemento, pois uma vez o primeiro elemento é retirado o próximo elemento que ficará apto a deixar a estrutura será o anterior. Dando continuidade a nossa lógica  o while garante que a execução infinita até chegar o último  elemento e o break é acionado, enquanto isso não acontece toda estrutura é percorrida  de forma que o  firstNode e o secondNode vão recebendo os próximos elementos, mas sempre o firstNode um elemento a frente.
-  Quando o primeiro elemento da fila é encontrado, o secondNode recebe como próximo elemento a  referência null, fazendo com que depois dele não tenha outro elemento e assim ele se torna o primeiro elemento e firstNode é retornado com elemento removido. 
+        return listSize;
+    }
+ 
+ ```
+ <p align ="justify"> 
+ &nbsp &nbsp &nbsp &nbsp O método size é responsável por percorrer toda a lista e contar os elementos presentes nela e assim retornar o tamanho da lista.  
 </p>
 
-## Implementção do First 
-```
-public Node<T> first(){
-        Node firstNode = null;
-        if(!this.isEmpty()){
-            Node currentNode = refNodeInput;
-            while (true){
-               if(currentNode.getRefNode() != null){
-                   currentNode = currentNode.getRefNode();
-               }else{
-                   firstNode=currentNode;
-                   break;
-               }
-            }
+## Implementação do método add:
+ ```
+  public void add(T content){
+        Node<T> newNode = new Node<>(content);
+
+        if(this.isEmpty()){
+            inputReference = newNode;
+            return;
         }
-        return firstNode;
+
+        Node <T> NodeAux =inputReference;
+
+        for(int i = 0;i<this.size()-1;i++){
+            NodeAux= NodeAux.getNextNode();
+        }
+
+        NodeAux.setNextNode(newNode);
+    }
+ ```
+ <p align ="justify"> 
+ &nbsp &nbsp &nbsp &nbsp O método add é responsável por adicionar um novo elemento ao final da lista, para isso inicialmente é realizado o teste se a lista está vazia, pois se isso for verdade o elemento será adicionando como a referência de entrada sendo assim o primeiro elemento, o outro caso corresponde ao cenário em que a lista já possui elementos e neste caso é utilizado um nó auxiliar responsável por percorrer toda a estrutura  com a ajuda de um laço de repetição, ao fim do laço o Nó auxiliar terá como referênncia o último elemento da estrutura e assim é possível adicionar o novo Nó. 
+</p>
+
+## Implementação do método validadeIndex:
+ ```
+ private void validateIndex(int index ){
+        if(index >= size()){
+            throw  new IndexOutOfBoundsException("There is no content in the index " + index + "this list");
+        }
+    }
+ 
+ ```
+ <p align ="justify"> 
+ &nbsp &nbsp &nbsp &nbsp O método validadeIndex  verifica se o index passado é maior que o tamanho da lista, para sim evitar o erro de acessar um elemento que não está na lista.
+</p>
+
+## Implementação do método getNode:
+```
+private  Node<T> getNode(int index){
+
+        validateIndex(index);
+
+        Node<T> NodeAux= inputReference;
+        Node<T> NodeReturn =null;
+
+        for(int i = 0;i<=index;i++){
+
+            NodeReturn = NodeAux;
+            NodeAux= NodeAux.getNextNode();
+
+        }
+        return NodeReturn;
+    }
+
+
+```
+<p align ="justify"> 
+ &nbsp &nbsp &nbsp &nbsp O método getNode recebe o index e pecorre a lista até esse ponto e retorna o nó que está presente nesta posição, essa funcionalidade serve de base para o método de obter um elemento da lista e para o método remove.  
+</p>
+
+## Implementção do método get 
+```
+ public T get(int index){
+        return getNode(index).getContent();
     }
 
 ```
 
 <p align ="justify"> 
- O método Firts Percorre toda a fila até chegar ao primeiro elemento e o retorna.  
+ &nbsp &nbsp &nbsp &nbsp O método get retorna uma chamada do getNode(que realiza a busca) pegando apenas o conteúdo presente no nó.   
+</p>
+
+
+## Implementção do método remove 
+```
+ public T remove(int index){
+        Node<T> NodePivot =this.getNode(index);
+        if(index == 0){
+            inputReference = NodePivot.getNextNode();
+            return NodePivot.getContent();
+        }
+        Node <T> NodePrevious = getNode(index-1);
+        NodePrevious.setNextNode(NodePivot.getNextNode());
+        return  NodePivot.getContent();
+    }
+
+
+```
+<p align ="justify"> 
+ &nbsp &nbsp &nbsp &nbsp O método remove deleta um elemento ao retirar as referências para ele, a função recebe o index do elemento a ser removido e logo após é verificado se o index é o primeiro, pois se for a  remoção é simplemente apontar a referência da lista para o elemento logo após o primeiro e o elemento retirado e retornado, o outro cenário é se o index for diferente de 0,ou seja, o elemento está não está no inicio, sendo a assim a remoção se dá da seguinte forma: é necessário guardar o elemento anterior ao removido e isso é feito com o método getNode, assim é possível setar o a referência do NodePrevious para o elemento próximo ao deletado, isso faz com que o elemento deletado fique sem referência fazendo com que ele seja recolhido pelo garbage collection, por fim o elemento deletado é retornado. 
 </p>
 
 
 
 ## Implementção do toString 
 ```
-@Override
+ @Override
     public String toString() {
-        String stringReturn = "";
-        Node Nodeaux =  refNodeInput;
-        if(refNodeInput != null){
-            while (true){
-                stringReturn += "[Node{object="+Nodeaux.getObject() +"}] ---->";
-                if(Nodeaux.getRefNode() != null){
-                    Nodeaux =Nodeaux.getRefNode();
-                }else{
-                     break;
-                 }
-            }
-        }else{
-            stringReturn ="null";
+
+        String strReturn ="";
+        Node <T> NodeAux =inputReference;
+
+        for(int i= 0;i<this.size();i++){
+            strReturn += "Node{ content= "+NodeAux.getContent() + "} --->";
+            NodeAux = NodeAux.getNextNode();
         }
-        return  stringReturn;
+        strReturn += "null";
+
+        return  strReturn;
     }
+
 ```
 
 <p align ="justify"> 
- O método toString Percorre toda a fila e vai adicionando cada elemento em  a string que tem o objetivo de facilitar a visão da fila quando ela é impresa.  
+ O método toString Percorre toda a Lista e vai adicionando cada elemento em  a string que tem o objetivo de facilitar a visão da Lista quando ela é impresa.  
 </p>
-
-
-# Pricipais usos :
-
-* Controle da ordem de execução de processos;
-* Controle de documentos para impressão;
-* Troca de mensagem entre computadores numa rede;
