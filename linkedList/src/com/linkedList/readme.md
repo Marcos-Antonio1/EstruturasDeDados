@@ -225,8 +225,16 @@ private  Node<T> getNode(int index){
         return  NodePivot.getContent();
     }
 
-
 ```
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/33884828/149951798-a1652982-001e-4334-948e-c68ad3aec657.png">
+  <br/>
+  <br/>
+</p>
+
+
+
 <p align ="justify"> 
  &nbsp &nbsp &nbsp &nbsp O método remove deleta um elemento ao retirar as referências para ele, a função recebe o index do elemento a ser removido e logo após é verificado se o index é o primeiro, pois se for a  remoção é simplemente apontar a referência da lista para o elemento logo após o primeiro e o elemento retirado e retornado, o outro cenário é se o index for diferente de 0,ou seja, o elemento está não está no inicio, sendo a assim a remoção se dá da seguinte forma: é necessário guardar o elemento anterior ao removido e isso é feito com o método getNode, assim é possível setar o a referência do NodePrevious para o elemento próximo ao deletado, isso faz com que o elemento deletado fique sem referência fazendo com que ele seja recolhido pelo garbage collection, por fim o elemento deletado é retornado. 
 </p>
