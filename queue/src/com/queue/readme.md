@@ -18,7 +18,7 @@
     A figura acima tenta mostrar um represetação gráfica de como seria essa estutura, A qual podemos destacar as principais operações realizadas que são enqueue(enfileirar) colocar no fim da Fila um novo elemento e dequeue(desenfileirar) retirar o elemento do início da Fila, cabe resaltar,ainda, a importância do ponteiro que  sempre armazena a referência do inicio da Fila, desta forma, servindo como base para as outras operações.
 
 # Implementação :
-  <p align="justify" > Nessa seção será mostrado a estutura básica de um pilha e suas principais operações. </p>
+  <p align="justify" > Nessa seção será mostrado a estutura básica de uma Fila e suas principais operações. </p>
   
   ## Implementação dos Elementos(Nós): 
   <p algin="justify"> Elementos que são responsáveis por armazenar os dados e a referências para o próximo objeto </p>
