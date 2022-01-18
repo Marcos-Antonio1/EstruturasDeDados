@@ -18,7 +18,7 @@
     A figura acima tenta mostrar um represetação gráfica de como seria essa estutura, Na qual podemos destacar as principais operações realizadas por uma pilha que são push(empilhar) colocar no topo da pilha e pop(desempilhar) retirar o elemento do topo da pilha, cabe resaltar,ainda, a importância do top(ponteiro) o qual sempre armazena a referência do topo da lista, desta forma, servindo como base para as outras operações.
 
 # Implementação :
-  <p align="justify" > Nessa seção será mostrado a estutura básica de um pilha e suas principais operações. </p>
+  <p align="justify" > Nessa seção será mostrado a estutura básica de uma pilha e suas principais operações. </p>
   
   ## Implementação dos Elementos(Nós): 
   <p algin="justify"> Elementos que são responsáveis por armazenar os dados e a referências para o próximo objeto </p>
